@@ -6,10 +6,31 @@ const StyledButton = styled.button`
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
+  display: inline-flex;
+  word-break: keep-all;
+  align-items: center;
+  svg {
+    margin-right: 5px;
+  }
   ${(props) =>
-    props.primary &&
+    props.$primary &&
     css`
       background-color: #5542f6;
+      border: 1px solid #5542f6;
+    `}
+  ${(props) =>
+    props.$whiteoutline &&
+    css`
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    `}
+    ${(props) =>
+    props.white &&
+    css`
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #fff;
     `}
   ${(props) =>
     props.size === "l" &&
