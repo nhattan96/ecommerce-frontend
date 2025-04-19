@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Center from "./Center";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const Bg = styled.div`
   background-color: #222;
@@ -44,6 +46,11 @@ const ButtonWrapper = styled.div`
 `;
 
 const Featured = ({ product }) => {
+  const { addProduct } = useContext(CartContext);
+  const addFeaturedToCard = () => {
+    addProduct(product._id);
+  };
+
   return (
     <Bg>
       <Center>
@@ -56,7 +63,7 @@ const Featured = ({ product }) => {
                 <ButtonLink href="/products" $whiteoutline size="l">
                   Read more
                 </ButtonLink>
-                <Button $primary size="l">
+                <Button $primary size="l" onClick={addFeaturedToCard}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

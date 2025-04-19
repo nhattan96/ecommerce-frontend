@@ -1,3 +1,4 @@
+import { primary } from "@/libs/color";
 import styled, { css } from "styled-components";
 
 export const ButtonStyle = css`
@@ -15,8 +16,21 @@ export const ButtonStyle = css`
   ${(props) =>
     props.$primary &&
     css`
-      background-color: #5542f6;
-      border: 1px solid #5542f6;
+      background-color: ${primary};
+      border: 1px solid ${primary};
+    `}
+  ${(props) =>
+    props.$block &&
+    css`
+      display: block;
+      width: 100%;
+    `}
+  ${(props) =>
+    props.$outline &&
+    css`
+      background-color: transparent;
+      color: ${primary};
+      border: 1px solid ${primary};
     `}
   ${(props) =>
     props.$whiteoutline &&
@@ -26,10 +40,17 @@ export const ButtonStyle = css`
       border: 1px solid #fff;
     `}
     ${(props) =>
-    props.white &&
+    props.$white &&
     css`
       background-color: #fff;
       color: #000;
+      border: 1px solid #fff;
+    `}
+    ${(props) =>
+    props.$black &&
+    css`
+      background-color: #000;
+      color: #fff;
       border: 1px solid #fff;
     `}
   ${(props) =>
@@ -44,8 +65,8 @@ const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 
-const Button = ({ children, ...rest }) => (
-  <StyledButton {...rest}>{children}</StyledButton>
-);
+const Button = ({ children, ...rest }) => {
+  return <StyledButton {...rest}>{children}</StyledButton>;
+};
 
 export default Button;

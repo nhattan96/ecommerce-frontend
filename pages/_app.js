@@ -1,3 +1,4 @@
+import CartContextProvider from "@/components/CartContext";
 import "@/styles/globals.css";
 import Head from "next/head";
 import { createGlobalStyle } from "styled-components";
@@ -63,7 +64,9 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
     </>
   );
 }

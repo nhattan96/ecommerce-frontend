@@ -2,6 +2,8 @@ import styled from "styled-components";
 import CartButton from "./icon-btn/CartIcon";
 import Button from "./Button";
 import CartIcon from "./icon-btn/CartIcon";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const ProductDetailStyle = styled.div`
   margin-top: 10px;
@@ -22,14 +24,18 @@ const PriceBoxStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 5px;
+  }
 `;
 
 const StyledProductBox = styled.div`
-  background: #fdfaf6;
+  background: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 10px;
   img {
     width: 100%;
@@ -39,7 +45,10 @@ const StyledProductBox = styled.div`
   }
 `;
 
-const ProductBox = ({ title, description, price, images }) => {
+const ProductBox = ({ _id, title, description, price, images }) => {
+
+  const { addProduct } = useContext(CartContext);
+
   return (
     <StyledProductBox>
       <div
@@ -53,8 +62,8 @@ const ProductBox = ({ title, description, price, images }) => {
       <ProductDetailStyle>
         <h1>{title}</h1>
         <PriceBoxStyle>
-          <h2>{price}$</h2>
-          <Button $primary>
+          <h2>${price}</h2>
+          <Button $secondary $outline onClick={() => addProduct(_id)}>
             <CartIcon></CartIcon>
           </Button>
         </PriceBoxStyle>
